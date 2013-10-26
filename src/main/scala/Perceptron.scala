@@ -2,6 +2,10 @@ package perceptron {
 
     class Perceptron {
 
+        private def predicate(w: List[Double], phi: List[Double]):Boolean = {
+            this.innerProduct(w, phi) >= 0.0
+        }
+
         private def innerProduct(a: List[Double], b: List[Double]): Double = {
             if (a.size != b.size) {
                 throw new RuntimeException("list size isn't equal.")
