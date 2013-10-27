@@ -1,5 +1,5 @@
 # Scala - Perceptron
-============
+===
 
 ## How to use
 ```scala
