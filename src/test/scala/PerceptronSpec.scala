@@ -7,7 +7,20 @@ class PerceptronSpec extends FlatSpec {
     behavior of "A Perceptron"
 
 
-    it should "predicate if >=0 then true else false from two List" in {
+    it should "update w(a, b, c) parmeter in trial." in {
+        val perceptron = new Perceptron
+        val trial = PrivateMethod[List[Double]]('trial)
+
+        val gold = List((1, 2, 5.0))
+        val w = List[Double](3.0, -4.0, 1.0)
+        val expect = List[Double](8.0, 6.0, 6.0)
+        val real:List[Double] = perceptron invokePrivate trial(gold, w)
+        assert(real !== w)
+        assert(real === expect)
+    }
+
+
+    it should "predicate if >=0 then true else false from two List." in {
         val perceptron = new Perceptron
         val predicate = PrivateMethod[Boolean]('predicate)
 
@@ -25,7 +38,7 @@ class PerceptronSpec extends FlatSpec {
     }
 
 
-    it should "inner product from two List" in {
+    it should "inner product from two List." in {
         val perceptron = new Perceptron
         val innerProduct = PrivateMethod[Double]('innerProduct)
 
@@ -34,6 +47,15 @@ class PerceptronSpec extends FlatSpec {
 
         val real:Double = perceptron invokePrivate innerProduct(a, b)
         val expect = 14.0
+        assert(real === expect)
+    }
+
+    it should "phi is return (x,y,1.0) List." in {
+        val perceptron = new Perceptron
+        val phi = PrivateMethod[List[Double]]('phi)
+
+        val real:List[Double] = perceptron invokePrivate phi(1,2)
+        val expect = List[Double](1.0, 2.0, 1.0)
         assert(real === expect)
     }
 
