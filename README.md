@@ -21,9 +21,6 @@ $ sbt run
 ```
 $ cd scala-perceptron/output/
 $ R
-```
-
-```R
 > lo <- read.table("lower.tsv", sep="\t")
 > up <- read.table("upper.tsv", sep="\t")
 > r = c(-3, 3)
