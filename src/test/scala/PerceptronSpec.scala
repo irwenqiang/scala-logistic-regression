@@ -6,14 +6,27 @@ class PerceptronSpec extends FlatSpec {
 
     behavior of "A Perceptron"
 
+    it should "recursive trial" in {
+        val perceptron = new Perceptron
+        val trial = PrivateMethod[List[Double]]('trial)
+
+        val gold = List((1.0, 4.0, 1.0),
+                        (-2.0, -1.0, -1.0))
+        val w:List[Double] = List[Double](0.0, 0.0, 0.0)
+        val real = perceptron.train(gold, w, 2)
+        val ones_w = perceptron invokePrivate trial(gold, w)
+        val expect = perceptron invokePrivate trial(gold, ones_w)
+        assert(real === expect)
+    }
+
 
     it should "update w(a, b, c) parmeter in trial." in {
         val perceptron = new Perceptron
         val trial = PrivateMethod[List[Double]]('trial)
 
-        val gold = List((1, 2, 5.0))
+        val gold = List((1.0, 2.0, 1.0))
         val w = List[Double](3.0, -4.0, 1.0)
-        val expect = List[Double](8.0, 6.0, 6.0)
+        val expect = List[Double](4.0, -2.0, 2.0)
         val real:List[Double] = perceptron invokePrivate trial(gold, w)
         assert(real !== w)
         assert(real === expect)
@@ -22,7 +35,7 @@ class PerceptronSpec extends FlatSpec {
 
     it should "predicate if >=0 then true else false from two List." in {
         val perceptron = new Perceptron
-        val predicate = PrivateMethod[Boolean]('predicate)
+        val predicate = PrivateMethod[Double]('predicate)
 
         val pos_one = List[Double](1.0)
         val zero = List[Double](0.0)
@@ -32,9 +45,9 @@ class PerceptronSpec extends FlatSpec {
         val pos_zero = perceptron invokePrivate predicate(pos_one, zero)
         val pos_neg = perceptron invokePrivate predicate(pos_one, neg_one)
 
-        assert(pos_pos === true)
-        assert(pos_zero === true)
-        assert(pos_neg === false)
+        assert(pos_pos === 1.0)
+        assert(pos_zero === 1.0)
+        assert(pos_neg === -1.0)
     }
 
 
@@ -54,7 +67,7 @@ class PerceptronSpec extends FlatSpec {
         val perceptron = new Perceptron
         val phi = PrivateMethod[List[Double]]('phi)
 
-        val real:List[Double] = perceptron invokePrivate phi(1,2)
+        val real:List[Double] = perceptron invokePrivate phi(1.0,2.0)
         val expect = List[Double](1.0, 2.0, 1.0)
         assert(real === expect)
     }
