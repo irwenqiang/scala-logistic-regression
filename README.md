@@ -1,5 +1,6 @@
 # Scala - Perceptron
 ===
+simple implementation using scala.
 
 ## How to use
 ```scala
