@@ -1,6 +1,18 @@
 package perceptron {
 
+    import scala.util._
+
     class Perceptron {
+
+        def train(gold:List[(Int, Int, Double)], w:List[Double] = List[Double](0.0, 0.0, 0.0), limit:Int = 1000): List[Double] = {
+            val r = new Random
+            val new_w:List[Double] = this.trail(r.shuffle(gold), w)
+            if (w == new_w || limit <= 0) {
+                return new_w
+            } else {
+                train(gold, new_w, limit-1)
+            }
+        }
 
         private def trial(gold:List[(Int, Int, Double)], w:List[Double]): List[Double] = {
             var new_w:List[Double] = w
@@ -35,15 +47,6 @@ package perceptron {
         }
 
 
-    }
-
-}
-
-
-object Main {
-
-    def main(args: Array[String]) {
-        println("hello world.")
     }
 
 }
