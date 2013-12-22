@@ -21,7 +21,7 @@ package logisticregression {
             gold.foreach { p =>
 
                 val feature: List[Double] = this.phi(p._1, p._2)
-                val predict: Double = this.predicate(feature, new_w)
+                val predict: Double = this.predicate(new_w, feature)
 
                 new_w = new_w.zip(feature).map((t) =>
                     // aw - eta + (predict - aglod._3) * aphi
