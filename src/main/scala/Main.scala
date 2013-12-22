@@ -1,13 +1,13 @@
 import scala.util.Random
 import java.io.PrintWriter
-import perceptron.Perceptron
+import logisticregression.LogisticRegression
 
 object Main {
 
     def main(args: Array[String]) {
         val gold:List[(Double, Double, Double)] = this.makeTestData(100)
-        val perceptron = new Perceptron
-        val w:List[Double] = perceptron.train(gold)
+        val logisticregression = new LogisticRegression
+        val w:List[Double] = logisticregression.train(gold)
 
         val up = new PrintWriter("output/upper.tsv")
         val lo = new PrintWriter("output/lower.tsv")
@@ -32,7 +32,7 @@ object Main {
         (1 to n).toList.map({(n) =>
             val x = (r.nextDouble() - 0.5) * 6.0
             val y = (r.nextDouble() - 0.5) * 6.0
-            val t = if (this.h(x, y) >= 0.0) 1.0 else -1.0
+            val t = if (this.h(x, y) >= 0.0) 1.0 else 0.0
             (x, y, t)
         })
     }

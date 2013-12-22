@@ -1,4 +1,4 @@
-# Scala - Perceptron
+# Scala - Logistic Regression
 ===
 simple implementation using scala.
 
