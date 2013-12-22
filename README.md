@@ -5,8 +5,8 @@ simple implementation using scala.
 ## How to use
 ```scala
 val gold:List:List[(Double, Double, Double)] = YOUR_TRAINING_DATSET
-val perceptron = new Perceptron
-val w:List[Double] = perceptron.train(gold)
+val logisticregression = new LogisticRegression
+val w:List[Double] = logisticregression.train(gold)
 ```
 
 ## Exmaple
@@ -14,13 +14,13 @@ val w:List[Double] = perceptron.train(gold)
 
 ### Run
 ```
-$ cd scala-perceptron
+$ cd scala-logistic-regression
 $ sbt run
 ```
 
 ### plot use R
 ```
-$ cd scala-perceptron/output/
+$ cd scala-logistic-regression/output/
 $ R
 > lo <- read.table("lower.tsv", sep="\t")
 > up <- read.table("upper.tsv", sep="\t")
@@ -28,4 +28,10 @@ $ R
 > plot(lo, col=2, xlim=r, ylim=r)
 > par(new=T)
 > plot(up, col=4, xlim=r, ylim=r)
+```
+
+### Test
+```
+$ cd scala-logistic-regression
+$ sbt test
 ```
